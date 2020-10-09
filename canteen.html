@@ -17,13 +17,29 @@
             font: 16px Arial, sans-serif;
         }
     </style>
+    <script>
+        //   $(function() {
+        //       // setTimeout() function will be fired after page is loaded
+        //       // it will wait for 5 sec. and then will fire
+        //       // $("#successMessage").hide() function
+        //       setTimeout(function() {
+        //           $("#loading").hide('blind', {}, 500)
+        //       }, 5000);
+        //   });
+        // func
+        setTimeout(function() {
+            $('#loading').fadeOut('fast');
+        }, 2000); // <-- time in milliseconds
+    </script>
 
 
 
 </head>
 
 <body>
-
+    <div id="loading">
+        <img id="loading-image" src="images/load.gif" alt="Loading..." />
+    </div>
     <div class="container">
         <img src="images/logo.png" alt="" style="width:70px; margin:50px 0 0 50px">
         <img src="images/logout.svg" width="25px" height="25px" alt="" style="float: inline-end;">Logout
