@@ -18,25 +18,7 @@
         }
     </style>
 
-    <script>
-        alert("this is test;");
-        formValidation() {
-            var name = document.menu.itemName;
-            var price = document.menu.itemPrice;
-            var group = document.menu.gid;
-            var subgroup = document.menu.sid;
-            if (alphanumeric(name)) {
-                if (allLeter(price)) {
-                    if (group == 0) {
-                        if (subgroup == 0) {
 
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-    </script>
 
 </head>
 
@@ -61,15 +43,15 @@
                 </li>
                 <li class="mcm ">
                     <img src="images/modifymenu.svg" width="25px" height="25px" alt="" style="float: inline-start;">
-                    <div target="1" class="showSingle" id="landingsite" style="display: inline-block;"> Modify Menu</div>
+                    <div target="3" class="showSingle" id="landingsite" style="display: inline-block;"> Modify Menu</div>
                 </li>
                 <li class="m ">
                     <img src="images/metrics.svg" width="25px" height="25px" alt="">
-                    <div target="3" class="showSingle" style="display: inline-block;">Metrics</div>
+                    <div target="4" class="showSingle" style="display: inline-block;">Metrics</div>
                 </li>
                 <li class="a ">
                     <img src="images/about.svg" width="25px" height="25px" alt="">
-                    <div target="4" class="showSingle" style="display: inline-block;">About</div>
+                    <div target="5" class="showSingle" style="display: inline-block;">About</div>
                 </li>
                 <li class=" ">
                     <img src="images/logout.svg" width="25px" height="25px" alt="">
@@ -83,67 +65,83 @@
 
             <div id="div1" class="targetDiv d1 innerBox qwerty">
                 <div class="canteen card" style="display: inline-block;">
-                    <div class="containers" style="display: inline-block;">
-                        <form name="menu" action="index.html" method="post" onsubmit="return formValidation();">
-                            <h1 style="color:#009688;">Modify Canteen Menu</h1>
-                            <fieldset>
-                                <legend>Modify Menu</legend>
-                                <table style="width:100%">
-                                    <tr>
-                                        <td><label for="itemName" class="lbl">Item Name:</label></td>
-                                        <td><input type="text" name="itemName" placeholder="Enter New Item" required><span class="" style="color:red;">*Name of item cannot be null</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="itemPrice" class="lbl">Set Price:</label></td>
-                                        <td><input type="text" name="itemPrice" placeholder="Enter price" required><span class="" style="color:red;">*Price of item cannot be null</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="gid" class="lbl">Group Id:</label></td>
-                                        <td><input type="text" name="gid" placeholder="Enter Group Id" required><span class="" style="color:red;">*Group Id cannot be null</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td> <label for="sid" class="lbl">Subgroup Id:</label></td>
-                                        <td> <input type="text" name="sid" placeholder="Enter Subgroup Id" required><span class="" style="color:red;">*Subgroup Id cannot be null</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td> <label for="image" class="lbl">Select Image</label></td>
-                                        <td><input type="file" name="image" name="filename" accept="image/gif, image/jpeg, image/png" required><span class="" style="color:red;">*You must select an image</span></td>
-                                    </tr>
-                                </table>
+                    <h2>Live Orders</h2>
+                    <div class="innercard">
+                        <img src="https://images.app.goo.gl/RupsJaAEFaVRnm2u8" width="100px" height="100px" style="border-radius: 50%; float: left; padding-right: 20px;" alt="">
+                        <input type="button" value="Accept" style="float: right;" class="accept">
+                        <h3 style="display: inline-block;"><b>Alex Vettithanam</b></h3><br>
 
+                        <p style="display: inline-block;"> Kerala Porota</p>
+                        <input type="button" value="Decline" style="float: right;" class="decline">
 
+                    </div>
 
+                    <div class="innercard">
+                        <img src="https://images.app.goo.gl/RupsJaAEFaVRnm2u8" width="100px" height="100px" style="border-radius: 50%; float: left; padding-right: 20px;" alt="">
+                        <input type="button" value="Accept" style="float: right;" class="accept">
+                        <h3 style="display: inline-block;"><b>Aditya Nair</b></h3><br>
 
+                        <p style="display: inline-block;"> Biryani</p>
+                        <input type="button" value="Decline" style="float: right;" class="decline">
+                    </div>
 
-                                <button class="button" name="submit" style="vertical-align:middle" onclick="return formValidation();"><span>Submit </span></button>
-                            </fieldset>
-                        </form>
+                    <div class="innercard">
+                        <img src="https://images.app.goo.gl/RupsJaAEFaVRnm2u8" width="100px" height="100px" style="border-radius: 50%; float: left; padding-right: 20px;" alt="">
+                        <input type="button" value="Accept" style="float: right;" class="accept">
+                        <h3 style="display: inline-block;"><b>Siddharth Nair</b></h3><br>
+
+                        <p style="display: inline-block;">Misal Pav</p>
+                        <input type="button" value="Decline" style="float: right;" class="decline">
+                    </div>
+
+                    <div class="innercard">
+                        <img src="https://images.app.goo.gl/RupsJaAEFaVRnm2u8" width="100px" height="100px" style="border-radius: 50%; float: left; padding-right: 20px;" alt="">
+                        <input type="button" value="Accept" style="float: right;" class="accept">
+                        <h3 style="display: inline-block;"><b>Mohanish Ghate</b></h3><br>
+
+                        <p style="display: inline-block;">Shawarma</p>
+                        <input type="button" value="Decline" style="float: right;" class="decline">
                     </div>
                 </div>
                 <div class="canteen card" style="display: inline-block;">
-                    <div class="containers" style="display: inline-block;">
-                        <h4><b>Jane Doe</b></h4>
-                        <p>Interior Designer</p>
+                    <h2>Call Out</h2>
+                    <div class="innercard">
+                        <img src="https://images.app.goo.gl/RupsJaAEFaVRnm2u8" width="100px" height="100px" style="border-radius: 50%; float: left; padding-right: 20px;" alt="">
+
+                        <h3 style="display: inline-block;"><b>Alex Vettithanam</b></h3><br>
+
+                        <p style="display: inline-block;"> Kerala Porota</p>
+                        <input type="button" value="Call Out" style="float: right;" class="button">
+                    </div>
+
+                    <div class="innercard">
+                        <img src="https://images.app.goo.gl/RupsJaAEFaVRnm2u8" width="100px" height="100px" style="border-radius: 50%; float: left; padding-right: 20px;" alt="">
+
+                        <h3 style="display: inline-block;"><b>Aditya Nair</b></h3><br>
+
+                        <p style="display: inline-block;">Biryani</p>
+                        <input type="button" value="Call Out" style="float: right;" class="button">
+                    </div>
+
+                    <div class="innercard">
+                        <img src="https://images.app.goo.gl/RupsJaAEFaVRnm2u8" width="100px" height="100px" style="border-radius: 50%; float: left; padding-right: 20px;" alt="">
+
+                        <h3 style="display: inline-block;"><b>Siddharth Nair</b></h3><br>
+
+                        <p style="display: inline-block;">Misal Pav</p>
+                        <input type="button" value="Call Out" style="float: right;" class="button">
+                    </div>
+
+                    <div class="innercard">
+                        <img src="https://images.app.goo.gl/RupsJaAEFaVRnm2u8" width="100px" height="100px" style="border-radius: 50%; float: left; padding-right: 20px;" alt="">
+
+                        <h3 style="display: inline-block;"><b>Mohanish Ghate</b></h3><br>
+
+                        <p style="display: inline-block;">Shawarma</p>
+                        <input type="button" value="Call Out" style="float: right;" class="button">
                     </div>
                 </div>
-                <!-- <table border="1px">
-                        <tr>
-                            <td>
-                                <div class="containers" style="display: inline-block;">
-                                    <h4><b>Jane Doe</b></h4>
-                                    <p>Interior Designer</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="containers" style="display: inline-block;">
-                                    <h4><b>Jane Doe</b></h4>
-                                    <p>Interior Designer</p>
-                                </div>
-                            </td>
-                        </tr>
-                    </table> -->
 
-                .
 
 
 
@@ -152,7 +150,7 @@
             </div>
 
             <div id="div2" class="targetDiv d2 innerBox qwerty">
-                <div class="Deposite">
+                <div class="Deposite card">
                     <h1>Deposite Money to User Account</h1>
                     <fieldset>
                         <legend>Add Virtual Money</legend>
@@ -165,11 +163,48 @@
                 </div>
             </div>
 
-            <div id="div3" class="targetDiv d3 innerBox main">
-                dflldskfjd
+            <div id="div3" class="targetDiv d3 innerBox qwerty">
+                <form name="menu" action="index.html" method="post" onsubmit="return formValidation();">
+                    <h1 style="color:#009688;">Modify Canteen Menu</h1>
+                    <fieldset>
+                        <legend>Modify Menu</legend>
+                        <table style="width:100%">
+                            <tr>
+                                <td><label for="itemName" class="lbl">Item Name:</label></td>
+                                <td><input type="text" name="itemName" placeholder="Enter New Item" required><span class="" style="color:red;">*Name of item cannot be null</span></td>
+                            </tr>
+                            <tr>
+                                <td><label for="itemPrice" class="lbl">Set Price:</label></td>
+                                <td><input type="text" name="itemPrice" placeholder="Enter price" required><span class="" style="color:red;">*Price of item cannot be null</span></td>
+                            </tr>
+                            <tr>
+                                <td><label for="gid" class="lbl">Group Id:</label></td>
+                                <td><input type="text" name="gid" placeholder="Enter Group Id" required><span class="" style="color:red;">*Group Id cannot be null</span></td>
+                            </tr>
+                            <tr>
+                                <td> <label for="sid" class="lbl">Subgroup Id:</label></td>
+                                <td> <input type="text" name="sid" placeholder="Enter Subgroup Id" required><span class="" style="color:red;">*Subgroup Id cannot be null</span></td>
+                            </tr>
+                            <tr>
+                                <td> <label for="image" class="lbl">Select Image</label></td>
+                                <td><input type="file" name="image" name="filename" accept="image/gif, image/jpeg, image/png" required><span class="" style="color:red;">*You must select an image</span></td>
+                            </tr>
+                        </table>
+
+
+
+
+
+                        <button class="button" name="submit" style="vertical-align:middle" onclick="return formValidation();"><span>Submit </span></button>
+                    </fieldset>
+                </form>
             </div>
 
             <div id="div4" class="targetDiv d4 innerBox main">
+                dflldskfjd
+            </div>
+
+            <div id="div5" class="targetDiv d5 innerBox main">
                 fjsdkfjsdl
                 <img src="images/logout.svg" width="100px" height="100px" alt="">
             </div>
