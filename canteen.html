@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 
     <style>
         .lbl {
@@ -18,18 +18,10 @@
         }
     </style>
     <script>
-        //   $(function() {
-        //       // setTimeout() function will be fired after page is loaded
-        //       // it will wait for 5 sec. and then will fire
-        //       // $("#successMessage").hide() function
-        //       setTimeout(function() {
-        //           $("#loading").hide('blind', {}, 500)
-        //       }, 5000);
-        //   });
-        // func
+        // starting animation
         setTimeout(function() {
             $('#loading').fadeOut('fast');
-        }, 2000); // <-- time in milliseconds
+        }, 2500); // <-- time in milliseconds
     </script>
 
 
@@ -43,6 +35,10 @@
     <div class="container">
         <img src="images/logo.png" alt="" style="width:70px; margin:50px 0 0 50px">
         <img src="images/logout.svg" width="25px" height="25px" alt="" style="float: inline-end;">Logout
+        <input type="text" placeholder="Search" id="search" autocomplete="off">
+        <div class="logout">
+            <img src="images/logout.svg" width="25px" height="25px" style="float: left;" alt=""><span>Logout</span>
+        </div>
 
 
         <br>
@@ -50,29 +46,36 @@
         <div>
             <ul class="menu leftsideMenu">
                 <li class="lo ">
-                    <img src="images/liveorder.svg" width="25px" height="25px" alt="" style="float: inline-start;">
-                    <div target="1" class="showSingle" id="landingsite" style="display: inline-block;"> Live Orders</div>
+
+                    <div target="1" class="showSingle" id="landingsite">
+                        <img src="images/liveorder.svg" width="25px" height="25px" alt="" style="float: left;padding-right: 10px;"><span>Live Orders</span>
+                    </div>
                 </li>
                 <li class="ac ">
-                    <img src="images/addcash.svg" width="25px" height="25px" alt="">
-                    <div target="2" class="showSingle" style="display: inline-block;">Add Cash</div>
+
+                    <div target="2" class="showSingle">
+                        <img src="images/addcash.svg" width="25px" height="25px" alt="" style="float: left;padding-right: 10px;"><span>Add Cash</span>
+                    </div>
                 </li>
                 <li class="mcm ">
-                    <img src="images/modifymenu.svg" width="25px" height="25px" alt="" style="float: inline-start;">
-                    <div target="3" class="showSingle" id="landingsite" style="display: inline-block;"> Modify Menu</div>
+
+                    <div target="3" class="showSingle">
+                        <img src="images/modifymenu.svg" width="25px" height="25px" alt="" style="float: left;padding-right: 10px;"> Modify Menu
+                    </div>
                 </li>
                 <li class="m ">
-                    <img src="images/metrics.svg" width="25px" height="25px" alt="">
-                    <div target="4" class="showSingle" style="display: inline-block;">Metrics</div>
+
+                    <div target="4" class="showSingle">
+                        <img src="images/metrics.svg" width="25px" height="25px" alt="" style="float: left;padding-right: 10px;">Metrics
+                    </div>
                 </li>
                 <li class="a ">
-                    <img src="images/about.svg" width="25px" height="25px" alt="">
-                    <div target="5" class="showSingle" style="display: inline-block;">About</div>
+
+                    <div target="5" class="showSingle">
+                        <img src="images/about.svg" width="25px" height="25px" alt="" style="float: left;padding-right: 10px;">About
+                    </div>
                 </li>
-                <li class=" ">
-                    <img src="images/logout.svg" width="25px" height="25px" alt="">
-                    <div target="4" class="showSingle" style="display: inline-block;">Logout</div>
-                </li>
+
 
             </ul>
         </div>
@@ -222,7 +225,8 @@
 
             <div id="div5" class="targetDiv d5 innerBox main">
                 fjsdkfjsdl
-                <img src="images/logout.svg" width="100px" height="100px" alt="">
+
+
             </div>
         </div>
     </div>
