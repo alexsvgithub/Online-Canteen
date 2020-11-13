@@ -1,9 +1,9 @@
-alert("this is test;");
+// item,gid,pos,price,image
 formValidation(){
-  var name= document.menu.itemName;
-  var price=document.menu.itemPrice;
+  var name= document.fname;
+  var price=document.menu.price;
   var group=document.menu.gid;
-  var subgroup=document.menu.sid;
+  var subgroup=document.menu.pos;
   if(alphanumeric(name)){
     if(allLeter(price)){
       if(group==0){
