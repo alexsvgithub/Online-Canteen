@@ -17,7 +17,7 @@ if((!empty($_POST['fname'])) && (!empty($_POST['gid'])) && (!empty($_POST['pos']
         $stmt->EXECUTE([$name]);
         $row=$stmt->rowCount();
 
-        if($row >=1)
+        if($row >0)
         {
 
                   try {
@@ -47,7 +47,7 @@ if((!empty($_POST['fname'])) && (!empty($_POST['gid'])) && (!empty($_POST['pos']
 
                       $sql= 'insert into items(name,price,groupId,position) values(?,?,?,?)';
                       $stmt= $pdo->prepare($sql);
-                      $stmt->EXECUTE(['$name',$price,$groupId,$position]);
+                      $stmt->EXECUTE([$name,$price,$groupId,$position]);
 
 
 

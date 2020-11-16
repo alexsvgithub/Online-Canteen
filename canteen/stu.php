@@ -51,9 +51,9 @@ require_once('connection.php');
 
   echo json_encode($tarray);
 
-  function all(){
+  function liveRequest(){
 
-    $sql = "SELECT * FROM items ";
+    $sql = "SELECT * FROM orders ";
     $stmt = $pdo->query($sql); //this method is used when there is no parametters..// and this execues the query
     $author = $stmt->fetchAll();
 

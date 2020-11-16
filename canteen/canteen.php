@@ -48,7 +48,7 @@ if(!isset($_SESSION['user'])){
         <div class="container">
             <img src="images/logo.png" alt="" style="width:70px; margin:50px 0 0 50px">
 
-            <input type="text" placeholder="Search" id="search" autocomplete="off" value="<?php echo $_SESSION['alex']?>" readonly>
+            <input type="text" placeholder="Search" id="search" autocomplete="off" value="<?php if(!empty($_SESSION['alex'])) echo $_SESSION['alex']?>" readonly>
 
             <div class="logout" >
                 <a href="logout.php"><img src="images/logout.svg" width="25px" height="25px" style="float: left;" alt="" ><span>Logout</span></a>
@@ -97,92 +97,46 @@ if(!isset($_SESSION['user'])){
             <div class="main">
 
                 <div id="div1" class="targetDiv d1 innerBox qwerty e">
-                    <div class="canteen card" style="display: inline-block;">
+                    <div class="canteen card cl" style="display: inline-block;">
                         <h2>Live Orders</h2>
-                        <div class="innercard">
-                            <img src="https://images.app.goo.gl/RupsJaAEFaVRnm2u8" width="100px" height="100px" style="border-radius: 50%; float: left; padding-right: 20px;" alt="">
-                            <input type="button" value="Accept" style="float: right;" class="accept">
-                            <h3 style="display: inline-block;"><b>Alex Vettithanam</b></h3><br>
-
-                            <p style="display: inline-block;"> Kerala Porota</p>
-                            <input type="button" value="Decline" style="float: right;" class="decline">
-
-                        </div>
-
-                        <div class="innercard">
-                            <img src="https://images.app.goo.gl/RupsJaAEFaVRnm2u8" width="100px" height="100px" style="border-radius: 50%; float: left; padding-right: 20px;" alt="">
-                            <input type="button" value="Accept" style="float: right;" class="accept">
-                            <h3 style="display: inline-block;"><b>Aditya Nair</b></h3><br>
-
-                            <p style="display: inline-block;"> Biryani</p>
-                            <input type="button" value="Decline" style="float: right;" class="decline">
-                        </div>
-
-                        <div class="innercard">
-                            <img src="https://images.app.goo.gl/RupsJaAEFaVRnm2u8" width="100px" height="100px" style="border-radius: 50%; float: left; padding-right: 20px;" alt="">
-                            <input type="button" value="Accept" style="float: right;" class="accept">
-                            <h3 style="display: inline-block;"><b>Siddharth Nair</b></h3><br>
-
-                            <p style="display: inline-block;">Misal Pav</p>
-                            <input type="button" value="Decline" style="float: right;" class="decline">
-                        </div>
-
-                        <div class="innercard">
-                            <img src="https://images.app.goo.gl/RupsJaAEFaVRnm2u8" width="100px" height="100px" style="border-radius: 50%; float: left; padding-right: 20px;" alt="">
-                            <input type="button" value="Accept" style="float: right;" class="accept">
-                            <h3 style="display: inline-block;"><b>Mohanish Ghate</b></h3><br>
-
-                            <p style="display: inline-block;">Shawarma</p>
-                            <input type="button" value="Decline" style="float: right;" class="decline">
-                        </div>
+                          <?php
+                                // require_once 'orders.php';
+                                // session_start();
+                              require_once 'orders.php';
+		                    		  foreach ($authors as $author) {
+                              echo '<div class="innercard cl">';
+                              echo "<img src='https://images.app.goo.gl/RupsJaAEFaVRnm2u8' width='100px' height='100px' style='border-radius: 50%; float: left; padding-right: 20px;'>";
+                              echo '<input type="button" value="Accept" style="float: right;" class="accept">';
+                              echo '<h3 style="display: inline-block;"><b>'.$author['userId'].'</b></h3><br>';
+                              echo '<p style="display: inline-block;"> '.$author['id'].'</p>';
+                              echo '<input type="button" value="Decline" style="float: right;" class="decline">';
+                              echo " </div>";
+                              }
+                            ?>
                     </div>
-                    <div class="canteen card" style="display: inline-block;">
+                    <div class="canteen card cr" style="display: inline-block;">
                         <h2>Call Out</h2>
-                        <div class="innercard">
-                            <img src="https://images.app.goo.gl/RupsJaAEFaVRnm2u8" width="100px" height="100px" style="border-radius: 50%; float: left; padding-right: 20px;" alt="">
-
-                            <h3 style="display: inline-block;"><b>Alex Vettithanam</b></h3><br>
-
-                            <p style="display: inline-block;"> Kerala Porota</p>
-                            <input type="button" value="Call Out" style="float: right;" class="button">
-                        </div>
-
-                        <div class="innercard">
-                            <img src="https://images.app.goo.gl/RupsJaAEFaVRnm2u8" width="100px" height="100px" style="border-radius: 50%; float: left; padding-right: 20px;" alt="">
-
-                            <h3 style="display: inline-block;"><b>Aditya Nair</b></h3><br>
-
-                            <p style="display: inline-block;">Biryani</p>
-                            <input type="button" value="Call Out" style="float: right;" class="button">
-                        </div>
-
-                        <div class="innercard">
-                            <img src="https://images.app.goo.gl/RupsJaAEFaVRnm2u8" width="100px" height="100px" style="border-radius: 50%; float: left; padding-right: 20px;" alt="">
-
-                            <h3 style="display: inline-block;"><b>Siddharth Nair</b></h3><br>
-
-                            <p style="display: inline-block;">Misal Pav</p>
-                            <input type="button" value="Call Out" style="float: right;" class="button">
-                        </div>
-
-                        <div class="innercard">
-                            <img src="https://images.app.goo.gl/RupsJaAEFaVRnm2u8" width="100px" height="100px" style="border-radius: 50%; float: left; padding-right: 20px;" alt="">
-
-                            <h3 style="display: inline-block;"><b>Mohanish Ghate</b></h3><br>
-
-                            <p style="display: inline-block;">Shawarma</p>
-                            <input type="button" value="Call Out" style="float: right;" class="button">
-                        </div>
-                    </div>
 
 
 
+                          <?php
+                            require_once 'orders.php';
 
+                        			foreach ($authors as $author) {
+                                echo '<div class="innercard cr">';
+                                echo "<img src='https://images.app.goo.gl/RupsJaAEFaVRnm2u8' width='100px' height='100px' style='border-radius: 50%; float: left; padding-right: 20px;'>";
 
+                                echo '<h3 style="display: inline-block;"><b>'.$author['userId'].'</b></h3><br>';
+                                echo '<p style="display: inline-block;"> '.$author['id'].'</p>';
+                                echo '<input type="button" value="Call Out" style="float: right;" class="button">';
+                                echo " </div>";
 
-                </div>
+                        			     }
+                          ?>
+                      </div>
+                  </div>
 
-                <div id="div2" class="targetDiv d2 innerBox qwerty">
+                  <div id="div2" class="targetDiv d2 innerBox qwerty">
                     <div class="Deposite card">
                         <h1>Deposite Money to User Account</h1>
                        <form action="index.html">
@@ -266,7 +220,7 @@ if(!isset($_SESSION['user'])){
                         console.log("test 4 = "+a);
                         console.log("test 5 = "+b);
                         console.log("test 6 = "+c);
-                        if(books[0].length==1){
+                        if(books[1].length==1){
                           // item,gid,pos,price,image
                           // $('#fn').val(y);
                           $('#gid').val(b);
@@ -275,7 +229,7 @@ if(!isset($_SESSION['user'])){
                           $('#image').val(a);
 
                         }
-                        if(books[0].length>1){
+                        if(books[1].length>1){
                           // item,gid,pos,price,image
                           // $('#fn').val(y);
                           $('#gid').val("");
