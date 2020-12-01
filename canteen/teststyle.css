@@ -38,7 +38,7 @@ a {
     text-decoration: none;
     color: white;
 }
-input[type=text] {
+input[type=text], select {
     font: 16px Arial, sans-serif;
     width: 30%;
     padding: 12px 20px;

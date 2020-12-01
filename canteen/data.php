@@ -16,7 +16,7 @@ if(!$mysqli){
 }
 
 //query to get data from the table
-$query = ("SELECT itemId, quantity FROM orderitems GROUP BY itemId");
+$query = ("SELECT DATE(createdAt) as `date`, amount FROM transactions GROUP BY createdAt ORDER BY createdAt");
 
 //execute query
 $result = $mysqli->query($query);

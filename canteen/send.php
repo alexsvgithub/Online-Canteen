@@ -10,22 +10,22 @@ if((!empty($_POST['fname'])) && (!empty($_POST['gid'])) && (!empty($_POST['pos']
         $price=$_POST['price'];
         $groupId=$_POST['gid'];
         $position=$_POST['pos'];
-        // $image=     This is remainging
 
         $sql = 'SELECT name from items where name=?';
         $stmt= $pdo->prepare($sql);
-        $stmt->EXECUTE([$name]);
+        $stmt->execute([$name]);
         $row=$stmt->rowCount();
 
         if($row >0)
         {
 
                   try {
-
-                          $sql = "UPDATE items SET price=?, groupId=?, position=? WHERE name=?";
+                          move_uploaded_file($_FILES["filename"]["tmp_name"], '../api/images/'.basename($_FILES["filename"]["name"]));
+                          $imagePath = '/images/'.basename($_FILES["filename"]["name"]);
+                          $sql = "UPDATE items SET price=?, groupId=?, position=?, image = ? WHERE name=?";
                           // $sql= 'insert into items(name,price,groupId,position) values(?,?,?,?)';
                           $stmt= $pdo->prepare($sql);
-                          $stmt->EXECUTE([$price,$groupId,$position,$name]);
+                          $stmt->execute([$price,$groupId,$position,$imagePath,$name]);
 
                           $_SESSION['alex']='Successfully Updated!';
 
@@ -44,10 +44,11 @@ if((!empty($_POST['fname'])) && (!empty($_POST['gid'])) && (!empty($_POST['pos']
 
                   try {
 
-
-                      $sql= 'insert into items(name,price,groupId,position) values(?,?,?,?)';
+                      move_uploaded_file($_FILES["filename"]["tmp_name"], '../api/images/'.basename($_FILES["filename"]["name"]));
+                      $imagePath = '/images/'.basename($_FILES["filename"]["name"]);
+                      $sql= 'insert into items(name,price,groupId,position,image) values(?,?,?,?,?)';
                       $stmt= $pdo->prepare($sql);
-                      $stmt->EXECUTE([$name,$price,$groupId,$position]);
+                      $stmt->execute([$name,$price,$groupId,$position,$imagePath]);
 
 
 

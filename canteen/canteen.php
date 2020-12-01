@@ -60,34 +60,24 @@ if(!isset($_SESSION['user'])){
             <br>
             <div>
                 <ul class="menu leftsideMenu">
-                    <li class="lo ">
-
-                        <div target="1" class="showSingle" id="landingsite">
+                    <li class="lo showSingle" id="landingsite" target="1">
+                        <div>
                             <img src="images/liveorder.svg" width="25px" height="25px" alt="" style="float: left;padding-right: 10px;"><span>Live Orders</span>
                         </div>
                     </li>
-                    <li class="ac ">
-
-                        <div target="2" class="showSingle">
+                    <li class="ac showSingle" target="2">
+                        <div>
                             <img src="images/addcash.svg" width="25px" height="25px" alt="" style="float: left;padding-right: 10px;"><span>Add Cash</span>
                         </div>
                     </li>
-                    <li class="mcm ">
-
-                        <div target="3" class="showSingle">
+                    <li class="mcm showSingle" target="3">
+                        <div>
                             <img src="images/modifymenu.svg" width="25px" height="25px" alt="" style="float: left;padding-right: 10px;"> Modify Menu
                         </div>
                     </li>
-                    <li class="m ">
-
-                        <div target="4" class="showSingle">
+                    <li class="m showSingle" target="4">
+                        <div>
                             <img src="images/metrics.svg" width="25px" height="25px" alt="" style="float: left;padding-right: 10px;">Metrics
-                        </div>
-                    </li>
-                    <li class="a ">
-
-                        <div target="5" class="showSingle">
-                            <img src="images/about.svg" width="25px" height="25px" alt="" style="float: left;padding-right: 10px;">About
                         </div>
                     </li>
 
@@ -107,12 +97,14 @@ if(!isset($_SESSION['user'])){
                                 // session_start();
                               require_once 'orders.php';
                               foreach ($authors as $author) {
-                              echo '<div class="innercard cl">';
-                              echo "<img src='https://images.app.goo.gl/RupsJaAEFaVRnm2u8' width='100px' height='100px' style='border-radius: 50%; float: left; padding-right: 20px;'>";
-                              echo '<input type="button" name="'.$author['ID'].'" value="Accept" style="float: right;" class="accept">';
-                              echo '<h3 style="display: inline-block;"><b>'.$author['food'].'</b></h3><br>';
-                              echo '<p name="'.$author['person'].'" style="display: inline-block;"> '.$author['person'].'</p>';
-                              echo '<input type="button" name="'.$author['ID'].'" value="Decline" style="float: right;" class="decline">';
+                              echo '<div class="innercard cl" style="display: flex">';
+                              echo "<div><img src='/api".$author['items'][0]['image']."' width='100px' height='100px' style='border-radius: 50%; padding-right: 20px;'></div>";
+                              echo '<div>
+                                <h3 style="display: inline-block;"><b>'.join(', ', array_column($author['items'], 'food')).'</b></h3>
+                                <p name="'.$author['person'].'" style="display: inline-block;"> '.$author['person'].'</p>
+                              </div>';
+                              echo '<div style="display: flex; flex-direction: column; justify-content: space-between"><input type="button" name="'.$author['ID'].'" value="Accept" class="accept">';
+                              echo '<input type="button" name="'.$author['ID'].'" value="Decline" class="decline"></div>';
                               echo " </div>";
                               }
                             ?>
@@ -129,16 +121,16 @@ if(!isset($_SESSION['user'])){
                             require_once 'call.php';
                             // // $authors = loadAuthors();
                             // $queues=callout();
-                        			foreach ($queues as $queue) {
-                                echo '<div class="innercard cr">';
-                                echo "<img src='https://images.app.goo.gl/RupsJaAEFaVRnm2u8' width='100px' height='100px' style='border-radius: 50%; float: left; padding-right: 20px;'>";
-
-                                echo '<h3 style="display: inline-block;"><b>'.$queue['food'].'</b></h3><br>';
-                                echo '<p style="display: inline-block;"> '.$queue['person'].'</p>';
-                                echo '<input type="button" name="'.$queue['EMAIL'].'" value="Call Out" style="float: right;" class="callout button">';
-                                echo " </div>";
-
-                        			     }
+                        			foreach ($queues as $author) {
+                                        echo '<div class="innercard cr" style="display: flex">';
+                                        echo "<div><img src='/api".$author['items'][0]['image']."' width='100px' height='100px' style='border-radius: 50%; padding-right: 20px;'></div>";
+                                        echo '<div>
+                                            <h3 style="display: inline-block;"><b>'.join(', ', array_column($author['items'], 'food')).'</b></h3>
+                                            <p name="'.$author['person'].'" style="display: inline-block;"> '.$author['person'].'</p>
+                                        </div>';
+                                        echo '<div style="display: flex; flex-direction: column; justify-content: flex-end"><input type="button" data-name="'.$author['person'].'" name="'.$author['EMAIL'].'" value="Call Out" style="float: right;" class="callout button"></div>';
+                                        echo " </div>";
+                                    }
                           ?>
                       </div>
                   </div>
@@ -165,7 +157,7 @@ if(!isset($_SESSION['user'])){
                 <div id="div3" class="targetDiv d3 innerBox qwerty">
 
 
-                  <form class="" action="send.php" method="post">
+                  <form class="" action="send.php" method="post" enctype="multipart/form-data">
                     <h1 style="color:#009688;">Modify Canteen Menu</h1>
                     <div class="cards">
                       <fieldset>
@@ -177,16 +169,32 @@ if(!isset($_SESSION['user'])){
                                       require_once 'stu.php';
                                       foreach ($data as $dat) {
                                             echo "<option id='".$dat['id']."' value='".$dat['name']."'>".$dat['name']."</option>";
-                                            }
+                                    }
                                   ?>
                             </datalist>
-                          <span>Group Id</span><input type="text" id="gid" name="gid" placeholder="Enter Group Id" required><br>
-                          <span>Postion Id</span><input type="text" id="pos" name="pos" placeholder="position" required><br>
+                        <span>Category</span><select id="gid" name="gid" required>
+                            <?php
+                                require_once 'connection.php';
+                                $results = $pdo->query('
+                                    SELECT id, name
+                                        FROM itemgroups
+                                ')->fetchAll();
+                                
+                                // echo dummy
+                                echo '<option value="">Select Category</option>';
+                                foreach($results as $result) {
+                                    echo '<option value="'.$result['id'].'">'.$result['name'].'</option>';
+                                }
+                            ?>
+
+                        </select>
+                            <br>
+                          <span>Position</span><input type="text" id="pos" name="pos" placeholder="position" required><br>
                           <span>Enter Price</span><input type="text" id="price" name="price" placeholder="price" required><br>
-                          <span>Select Image</span><input type="file" id="image" name="image" name="filename" accept="image/gif, image/jpeg, image/png" required><br>
+                          <span>Select Image</span><input type="file" id="image" name="filename" accept="image/gif, image/jpeg, image/png" required><br>
 
 
-                          <button class="button" name="submit" onclick="return formValidation();"><span>Submit </span></button>
+                          <button class="button" name="submit"><span>Submit</span></button>
                       </fieldset>
                     </div>
 
@@ -195,14 +203,21 @@ if(!isset($_SESSION['user'])){
 
                 </div>
 
-                <div id="div4" class="targetDiv d4 innerBox main">
-                    dflldskfjd
-                </div>
-
-                <div id="div5" class="targetDiv d5 innerBox main">
-                    fjsdkfjsdl
-
-
+                <div id="div4" class="targetDiv d4 innerBox qwerty" style="overflow: auto; max-height: 75vh;">
+                <h2 align="center"  style="color:#009688;">Daily Earnings</h2>
+                    <center><div id="chart-container">
+                    <canvas id="mycanvas1"></canvas>
+                    </div></center>
+                    <hr>
+                    <h2 align="center" style="color:#009688;">Food Item Sales</h2>
+                <center><div id="chart-container">
+                <canvas id="mycanvas2"></canvas>
+                </div></center>
+                
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+                <script src="./app.js"></script>
+                
                 </div>
             </div>
         </div>
@@ -250,17 +265,17 @@ $('.decline').click(function (e) {
 
 //for sending Email notification
 $('.callout').click(function (e) {
-    em = $(this).attr("name");
-    alert(em);
-    console.log(em);
-    $.ajax({
-        url: 'sendEmail.php',
-        type: 'POST',
-        data: {"email":em},
-        success: function(data) {
+    let em = $(this).attr("name");
+    let name = $(this).attr('data-name');
+    
 
-            $_SESSION['alex']='Successfully Called Last order'; // Inspect this in your console
-            location.reload(true);
+
+    $.ajax({
+        url: 'callout.php',
+        type: 'POST',
+        data: {"email":em, "name": name},
+        success: function(data) {
+            alert('Email sent successfully!');
         }
     });
 
