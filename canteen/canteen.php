@@ -1,10 +1,13 @@
 <?php
 session_start();
 if(!isset($_SESSION['user'])){
-  $_SESSION['message']='not logged in <br> Please Login';
+  $_SESSION['message']='Not logged in <br> Please Login';
 
   header('Location: login.php');
 }
+
+
+
 
 
 ?>
@@ -15,15 +18,13 @@ if(!isset($_SESSION['user'])){
     <head>
         <meta charset="utf-8">
         <title>Canteen View</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="teststyle.css">
 
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
         <!-- Latest compiled JavaScript -->
-        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstr
-
-        ap/3.4.1/js/bootstrap.min.js"></script> -->
+        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 
 
         <script>
@@ -48,7 +49,7 @@ if(!isset($_SESSION['user'])){
         <div class="container">
             <img src="images/logo.png" alt="" style="width:70px; margin:50px 0 0 50px">
 
-            <input type="text" placeholder="Search" id="search" autocomplete="off" value="<?php if(!empty($_SESSION['alex'])) echo $_SESSION['alex']?>" readonly>
+            <input type="text" placeholder="Status:Online" id="search" autocomplete="off" value="<?php if(!empty($_SESSION['alex'])) echo $_SESSION['alex']?>" readonly>
 
             <div class="logout" >
                 <a href="logout.php"><img src="images/logout.svg" width="25px" height="25px" style="float: left;" alt="" ><span>Logout</span></a>
@@ -93,42 +94,48 @@ if(!isset($_SESSION['user'])){
 
                 </ul>
             </div>
-            <h4 style="position:absolute;bottom: 0;left: 32px; font-family: 'Roboto', sans-serif;color: white;">MES &copy PCE</h4>
+            <h4 style="position:absolute;bottom: 0;left: 32px; font-family: 'Roboto', sans-serif;color: white;font-size:14px;">MES &copy PCE</h4>
             <div class="main">
 
                 <div id="div1" class="targetDiv d1 innerBox qwerty e">
-                    <div class="canteen card cl" style="display: inline-block;">
+                    <div class="canteen card cl" id="live" style="display: inline-block;">
                         <h2>Live Orders</h2>
+                        <form action="do.php" method="post">
+
                           <?php
                                 // require_once 'orders.php';
                                 // session_start();
                               require_once 'orders.php';
-		                    		  foreach ($authors as $author) {
+                              foreach ($authors as $author) {
                               echo '<div class="innercard cl">';
                               echo "<img src='https://images.app.goo.gl/RupsJaAEFaVRnm2u8' width='100px' height='100px' style='border-radius: 50%; float: left; padding-right: 20px;'>";
-                              echo '<input type="button" value="Accept" style="float: right;" class="accept">';
-                              echo '<h3 style="display: inline-block;"><b>'.$author['userId'].'</b></h3><br>';
-                              echo '<p style="display: inline-block;"> '.$author['id'].'</p>';
-                              echo '<input type="button" value="Decline" style="float: right;" class="decline">';
+                              echo '<input type="button" name="'.$author['ID'].'" value="Accept" style="float: right;" class="accept">';
+                              echo '<h3 style="display: inline-block;"><b>'.$author['food'].'</b></h3><br>';
+                              echo '<p name="'.$author['person'].'" style="display: inline-block;"> '.$author['person'].'</p>';
+                              echo '<input type="button" name="'.$author['ID'].'" value="Decline" style="float: right;" class="decline">';
                               echo " </div>";
                               }
                             ?>
+
+                        </form>
+
                     </div>
-                    <div class="canteen card cr" style="display: inline-block;">
+                    <div class="canteen card cr" id="ca" style="display: inline-block;">
                         <h2>Call Out</h2>
 
 
 
                           <?php
-                            require_once 'orders.php';
-
-                        			foreach ($authors as $author) {
+                            require_once 'call.php';
+                            // // $authors = loadAuthors();
+                            // $queues=callout();
+                        			foreach ($queues as $queue) {
                                 echo '<div class="innercard cr">';
                                 echo "<img src='https://images.app.goo.gl/RupsJaAEFaVRnm2u8' width='100px' height='100px' style='border-radius: 50%; float: left; padding-right: 20px;'>";
 
-                                echo '<h3 style="display: inline-block;"><b>'.$author['userId'].'</b></h3><br>';
-                                echo '<p style="display: inline-block;"> '.$author['id'].'</p>';
-                                echo '<input type="button" value="Call Out" style="float: right;" class="button">';
+                                echo '<h3 style="display: inline-block;"><b>'.$queue['food'].'</b></h3><br>';
+                                echo '<p style="display: inline-block;"> '.$queue['person'].'</p>';
+                                echo '<input type="button" name="'.$queue['EMAIL'].'" value="Call Out" style="float: right;" class="callout button">';
                                 echo " </div>";
 
                         			     }
@@ -137,18 +144,21 @@ if(!isset($_SESSION['user'])){
                   </div>
 
                   <div id="div2" class="targetDiv d2 innerBox qwerty">
-                    <div class="Deposite card">
-                        <h1>Deposite Money to User Account</h1>
-                       <form action="index.html">
-                        <fieldset>
-                            <legend>Add Virtual Money</legend>
-                            <label for="adno" class="lbl">Admission No</label>
-                            <input type="text" id="adno" placeholder="Enter Admission No here" required pattern="[a-zA-Z1-9]+"><br><br>
-                            <label for="amt" class="lbl">Select Amount</label>
-                            <input type="text" id="amt" placeholder="Enter Money to Deposite" required pattern="[1-9]+"><br><br>
-                            <button class="button" style="vertical-align:middle"><span>Submit </span></button>
-                        </fieldset>
-                           </form>
+                    <div class="Deposite">
+                        <h1 style="color:#009688;">Deposite Money to User Account</h1>
+                        <div class="cards">
+                          <form action="addMoney.php" method="post">
+                           <fieldset>
+                               <legend>Add Virtual Money</legend>
+                               <label for="adno" class="lbl">Email Id:</label>
+                               <input type="text" id="adno" name="email" placeholder="Enter Email Id" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br><br>
+                               <label for="amt" class="lbl">Amount</label>
+                               <input type="text" id="amt" name="amount" placeholder="Enter Money to Deposite" required pattern="[0-9]+"><br><br>
+                               <button class="button" style="vertical-align:middle"><span>Submit </span></button>
+                           </fieldset>
+                          </form>
+                        </div>
+
                     </div>
                 </div>
 
@@ -157,26 +167,29 @@ if(!isset($_SESSION['user'])){
 
                   <form class="" action="send.php" method="post">
                     <h1 style="color:#009688;">Modify Canteen Menu</h1>
-                    <fieldset>
-                        <legend>Modify Menu</legend>
+                    <div class="cards">
+                      <fieldset>
+                          <legend>Modify Menu</legend>
 
-                        <span>Product Name</span><input list="browsers" id="fn" name="fname" placeholder="Enter the food item" onkeyup="snameret()"><br>
-                          <datalist id="browsers">
-                              <?php
-                                    require_once 'stu.php';
-                                    foreach ($data as $dat) {
-                                          echo "<option id='".$dat['id']."' value='".$dat['name']."'>".$dat['name']."</option>";
-                                          }
-                                ?>
-                          </datalist>
-                        <span>Enter Group Id</span><input type="text" id="gid" name="gid" placeholder="Enter Group Id" required><br>
-                        <span>Postion Id</span><input type="text" id="pos" name="pos" placeholder="position" required><br>
-                        <span>Enter Price</span><input type="text" id="price" name="price" placeholder="price" required><br>
-                        <span>Select Image</span><input type="file" id="image" name="image" name="filename" accept="image/gif, image/jpeg, image/png" required><br>
+                          <span>Item Name</span><input type="text" list="browsers" id="fn" name="fname" placeholder="Enter the food item" onkeyup="snameret()"><br>
+                            <datalist id="browsers">
+                                <?php
+                                      require_once 'stu.php';
+                                      foreach ($data as $dat) {
+                                            echo "<option id='".$dat['id']."' value='".$dat['name']."'>".$dat['name']."</option>";
+                                            }
+                                  ?>
+                            </datalist>
+                          <span>Group Id</span><input type="text" id="gid" name="gid" placeholder="Enter Group Id" required><br>
+                          <span>Postion Id</span><input type="text" id="pos" name="pos" placeholder="position" required><br>
+                          <span>Enter Price</span><input type="text" id="price" name="price" placeholder="price" required><br>
+                          <span>Select Image</span><input type="file" id="image" name="image" name="filename" accept="image/gif, image/jpeg, image/png" required><br>
 
 
-                        <button class="button" name="submit" style="vertical-align:middle" onclick="return formValidation();"><span>Submit </span></button>
-                    </fieldset>
+                          <button class="button" name="submit" onclick="return formValidation();"><span>Submit </span></button>
+                      </fieldset>
+                    </div>
+
                   </form>
 
 
@@ -195,6 +208,75 @@ if(!isset($_SESSION['user'])){
         </div>
 
 <script type="text/javascript">
+
+//
+// setInterval(function(){
+// $("#live").load('orders.php');
+// $("#ca").load('call.php');
+// }, 10000);
+
+var em;
+//for accept button press
+$('.accept').click(function (e) {
+    em = $(this).attr("name");
+
+    console.log(em);
+    $.ajax({
+        url: 'accept.php',
+        type: 'POST',
+        data: {"id":em},
+        success: function(data) {
+              location.reload(true);
+        }
+    });
+
+});
+
+//for decline button press
+$('.decline').click(function (e) {
+    em = $(this).attr("name");
+    alert(em);
+    console.log(em);
+    $.ajax({
+        url: 'decline.php',
+        type: 'POST',
+        data: {"id":em},
+        success: function(data) {
+          location.reload(true);
+        }
+    });
+
+});
+
+//for sending Email notification
+$('.callout').click(function (e) {
+    em = $(this).attr("name");
+    alert(em);
+    console.log(em);
+    $.ajax({
+        url: 'sendEmail.php',
+        type: 'POST',
+        data: {"email":em},
+        success: function(data) {
+
+            $_SESSION['alex']='Successfully Called Last order'; // Inspect this in your console
+            location.reload(true);
+        }
+    });
+
+});
+
+
+console.log(em);
+
+
+
+
+// $(".accept").click(function(){
+//   var title = $( ".accept" ).attr( "name" );
+//   alert(title);
+// });
+
   function snameret(){
           let fname = $("#fn").val();
           console.log(fname);

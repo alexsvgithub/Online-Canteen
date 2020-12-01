@@ -27,7 +27,7 @@ if((!empty($_POST['fname'])) && (!empty($_POST['gid'])) && (!empty($_POST['pos']
                           $stmt= $pdo->prepare($sql);
                           $stmt->EXECUTE([$price,$groupId,$position,$name]);
 
-                          $_SESSION['alex']='Successfully inserted into (inside-INSIDE)';
+                          $_SESSION['alex']='Successfully Updated!';
 
                           header('Location: canteen.php');
 
@@ -51,7 +51,7 @@ if((!empty($_POST['fname'])) && (!empty($_POST['gid'])) && (!empty($_POST['pos']
 
 
 
-                    $_SESSION['alex']='Successfully inserted into (inside-OUT)';
+                    $_SESSION['alex']='Successfully Inserted ';
 
                     header('Location: canteen.php');
 

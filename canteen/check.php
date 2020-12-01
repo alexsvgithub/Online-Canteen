@@ -16,14 +16,14 @@
       $_SESSION['user']= $name;
       header('Location: main.php');
     }else {
-      $_SESSION['message']="no user found in database";
+      $_SESSION['message']="No user found in database";
       header('Location: login.php');
     }
 
 
  }
-    
- 
+
+
 
 
 

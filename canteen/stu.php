@@ -63,27 +63,6 @@ require_once('connection.php');
 
 
 
-  //   $data=$stmt->fetchAll();
-  //   $test3='test3 it is';
-  // $test1='Hello this is test';
-  // $test2='This is second test';
-  //
-  // $tarray=array($test1,$test2,$test3);
-  //
-  // echo json_encode($tarray);
-  //
-  //
-  // echo '<table border="1">';
-  // echo "<tr><tr><th>First Name</th></tr>";
-  // foreach($data as $content){
-  //   echo "<tr><td>".$content['fname']."</td></tr>";
-  // }
-  //   echo "</table>";
-  //
-  //
-  //
-
-
 
 
 

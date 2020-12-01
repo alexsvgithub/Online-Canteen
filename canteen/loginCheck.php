@@ -17,7 +17,7 @@
         $_SESSION['user']= $email;
         header('Location: canteen.php');
       }else {
-        $_SESSION['message']="no user found in database";
+        $_SESSION['message']="No user found in database";
         header('Location: login.php');
       }
 
